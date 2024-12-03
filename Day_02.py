@@ -1,13 +1,12 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring, missing-final-newline
+from itertools import pairwise
 
 def split_file(file):
     with open(file, encoding="utf-8") as f:
         return f.read().splitlines()
 
 def is_safe(levels):
-    diffs = []
-    for i in range(len(levels) - 1):
-        diffs.append(levels[i + 1] - levels[i])
+    diffs = [j - i for i, j in pairwise(levels)]
 
     for diff in diffs:
         if abs(diff) < 1 or abs(diff) > 3:
