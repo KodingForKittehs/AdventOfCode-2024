@@ -35,10 +35,7 @@ def check_direction(i, j, d, lines):
     return 0
 
 def check_location(i, j, lines):
-    res = 0
-    for d in dirs:
-        res += check_direction(i, j, d, lines)
-    return res
+    return sum(check_direction(i, j, d, lines) for d in dirs)
 
 def check_location_mas(i, j, lines):
     ms = ""
