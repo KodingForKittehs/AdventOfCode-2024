@@ -6,11 +6,8 @@ def get_input(file):
         return f.read()
 
 def clean_input(line):
-    while r := re.findall(r"don't\(\).*?do\(\)", line, re.DOTALL):
-        line = line.replace(r[0], "xx")
-
-    line = re.sub(r"don't\(\).*", "xx", line, re.DOTALL)
-    return line
+    line = re.sub(r"don't\(\).*?do\(\)", "x", line, flags=re.DOTALL)
+    return re.sub(r"don't\(\).*", "xx", line, flags=re.DOTALL)
 
 def get_mult(line):
     matches = re.findall(r"mul\((\d{1,3}),(\d{1,3})\)", line)
