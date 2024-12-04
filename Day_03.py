@@ -1,4 +1,4 @@
-# pylint: disable=missing-module-docstring, missing-function-docstring, missing-final-newline
+# pylint: disable=missing-module-docstring, missing-function-docstring, missing-final-newline, invalid-name
 import re
 
 def get_input(file):
