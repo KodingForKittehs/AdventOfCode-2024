@@ -2,6 +2,7 @@
 import re
 import time
 
+
 class Timer:
     def __init__(self, label=""):
         self.start = 0
@@ -15,8 +16,10 @@ class Timer:
         self.end = time.time()
         print(f"Time taken {self.label}: {self.end - self.start}")
 
+
 def find_ints(line):
-    return [int(i) for i in re.findall(r'\d+', line)]
+    return [int(i) for i in re.findall(r"\d+", line)]
+
 
 def nom_file(file, split_on=None):
     with open(file, encoding="utf-8") as f:
@@ -29,14 +32,15 @@ def nom_file(file, split_on=None):
                 res.append(line)
         yield res
 
-def eat(input_file, split_on = None):
+
+def eat(file, split_on=None):
     if split_on is None:
         try:
-            return next(nom_file(input_file))
+            return next(nom_file(file))
         except FileNotFoundError:
             return next(nom_file("sample"))
     else:
         try:
-            return list(nom_file(input_file, split_on))
+            return list(nom_file(file, split_on))
         except FileNotFoundError:
             return list(nom_file("sample", split_on))
