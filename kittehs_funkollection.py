@@ -17,3 +17,26 @@ class Timer:
 
 def find_ints(line):
     return [int(i) for i in re.findall(r'\d+', line)]
+
+def nom_file(file, split_on=None):
+    with open(file, encoding="utf-8") as f:
+        res = []
+        for line in (line.strip() for line in f.readlines()):
+            if split_on is not None and line == split_on:
+                yield res
+                res = []
+            else:
+                res.append(line)
+        yield res
+
+def eat(input_file, split_on = None):
+    if split_on is None:
+        try:
+            return next(nom_file(input_file))
+        except FileNotFoundError:
+            return next(nom_file("sample"))
+    else:
+        try:
+            return list(nom_file(input_file, split_on))
+        except FileNotFoundError:
+            return list(nom_file("sample", split_on))
