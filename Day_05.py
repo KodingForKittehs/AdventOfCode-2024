@@ -25,22 +25,15 @@ def get_book_score(book, pages):
     for p1 in range(len(book) - 1):
         for p2 in range(p1 + 1, len(book)):
             if (book[p2], book[p1]) in pages:
+                book[p1], book[p2] = book[p2], book[p1]
                 return 0
     return book[len(book) // 2]
 
-def try_swap(book, pages):
-    for p1 in range(len(book) - 1):
-        for p2 in range(p1 + 1, len(book)):
-            if (book[p2], book[p1]) in pages:
-                book[p1], book[p2] = book[p2], book[p1]
-                return True
-    return False
-
 def reorder_book(book, pages):
-    while try_swap(book, pages):
-        pass
+    while not (mid := get_book_score(book, pages)):
+        continue
 
-    return book[len(book) // 2]
+    return mid
 
 def solve():
     lines = get_input()
