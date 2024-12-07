@@ -21,7 +21,6 @@ def recurse(nums, use_extra_ops):
     if len(nums) == 1:
         return [nums[0]]
     end = nums[-1]
-
     front = recurse(nums[0:-1], use_extra_ops)
     res = [i + end for i in front] + [i * end for i in front]
     if use_extra_ops:
