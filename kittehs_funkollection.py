@@ -44,3 +44,6 @@ def eat(file, split_on=None):
             return list(nom_file(file, split_on))
         except FileNotFoundError:
             return list(nom_file("sample", split_on))
+
+def to_grid(lines):
+    return list(list(c for c in line) for line in lines)
