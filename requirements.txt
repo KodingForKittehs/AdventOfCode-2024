@@ -1,3 +1,4 @@
+igraph
 numpy
 shapely
 matplotlib

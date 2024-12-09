@@ -47,3 +47,6 @@ def eat(file, split_on=None):
 
 def to_grid(lines):
     return list(list(c for c in line) for line in lines)
+
+def is_inside(grid, point):
+    return 0 <= point[0] < len(grid) and 0 <= point[1] < len(grid[0])
