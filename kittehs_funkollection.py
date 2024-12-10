@@ -33,6 +33,13 @@ def nom_file(file, split_on=None):
         yield res
 
 
+def find_sublist(lst, sublst):
+    sub_len = len(sublst)
+    for i in range(len(lst) - sub_len + 1):
+        if lst[i:i + sub_len] == sublst:
+            return i
+    return -1
+
 def eat(file, split_on=None):
     if split_on is None:
         try:
