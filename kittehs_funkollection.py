@@ -50,15 +50,8 @@ def find_sublist(lst, sublst):
 
 def eat(file, split_on=None):
     if split_on is None:
-        try:
-            return next(nom_file(file))
-        except FileNotFoundError:
-            return next(nom_file("sample"))
-    else:
-        try:
-            return list(nom_file(file, split_on))
-        except FileNotFoundError:
-            return list(nom_file("sample", split_on))
+        return next(nom_file(file))
+    return list(nom_file(file, split_on))
 
 def to_grid(lines, ctype=str):
     return list(list(ctype(c) for c in line) for line in lines)
