@@ -20,7 +20,9 @@ class Timer:
         print(f"Time taken {self.label}: {self.end - self.start}")
 
 def find_ints(line):
-    return [int(i) for i in re.findall(r"\d+", line)]
+    return [int(i) for i in re.findall(r"-?\d+", line)]
+
+assert find_ints("abc 123 def -456") == [123, -456]
 
 def file_as_grid(file, ctype=str):
     with open(file, encoding="utf-8") as f:
@@ -55,6 +57,10 @@ def eat(file, split_on=None):
 
 def to_grid(lines, ctype=str):
     return list(list(ctype(c) for c in line) for line in lines)
+
+def print_grid(grid):
+    for row in grid:
+        print("".join(row))
 
 def is_inside(grid, point):
     return 0 <= point[0] < len(grid) and 0 <= point[1] < len(grid[0])
