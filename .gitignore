@@ -1,6 +1,6 @@
 .venv/
 input*
-sample
+sample*
 *.pyc
 *_stuff.py
 *.png
