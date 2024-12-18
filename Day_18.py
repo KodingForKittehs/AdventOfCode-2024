@@ -18,13 +18,13 @@ def solve():
         fallen = 1024
         size = 70
     lines = next(kf.nom_file(inp))
-    lines = [kf.find_ints(x) for x in lines]
+    lines = [tuple(kf.find_ints(x)) for x in lines]
     n = size + 1
 
     fallen_bytes = set()
     for line_no in range(0, fallen):
         line = lines[line_no]
-        fallen_bytes.add((line[0], line[1]))
+        fallen_bytes.add(line)
 
     def flood_fill():
         heap = []
@@ -48,7 +48,7 @@ def solve():
 
     for line_no in range(fallen, len(lines)):
         line = lines[line_no]
-        fallen_bytes.add((line[0], line[1]))
+        fallen_bytes.add(line)
         if flood_fill() == -1:
             print(f"Part 2: {line[0]},{line[1]}")
             break
