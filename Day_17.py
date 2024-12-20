@@ -1,6 +1,7 @@
 # pylint: disable=trailing-whitespace, missing-module-docstring, missing-function-docstring, missing-class-docstring, missing-final-newline, invalid-name, trailing-newlines, wrong-import-position, unused-import
-import heapq
+import pygame
 import kittehs_funkollection as kf
+
 inp = "input"
 registers, program = kf.eat(inp, "")
 
@@ -11,7 +12,6 @@ program = kf.find_ints(program[0])
 
 print(A, B, C)
 print(program)
-
 
 def get_operand_value(op, A, B, C):
     if op <= 3:
@@ -82,3 +82,62 @@ def run_program(program, A, B, C):
 
 output = run_program(program, A, B, C)
 print(f"P1: {output}")
+
+pygame.init()
+screen = pygame.display.set_mode((640, 480))
+pygame.display.set_caption('Day 17')
+
+A = 1
+mult = 1
+dirn = 1
+last_matches = 0
+for iterations in range(100000000):
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                running = False
+            elif event.key == pygame.K_DOWN:
+                dirn = -1
+            elif event.key == pygame.K_UP:
+                dirn = 1
+            elif event.key == pygame.K_LEFT:
+                mult = int(mult / 10)
+                if mult == 0:
+                    mult = 1
+            elif event.key == pygame.K_RIGHT:
+                mult = int(mult * 10)
+
+    output = run_program(program, A, B, C)
+
+    if output == program:
+        print(f"P2: {A}")
+        break
+
+    if len(output) > len(program):
+        print("Output too long")
+    if len(output) < len(program):
+        print("Output too short")
+
+    good_ending = True
+    matches = 0
+    for i in range(12):
+        if output[len(output) - i - 1] != program[len(program) - i - 1]:
+            matches = i
+            break
+    if matches > last_matches and len(output) == 16:
+        if dirn == 1:
+            A -= mult
+        else:
+            A +=  mult
+        mult = 1
+    last_matches = matches
+
+    print(A, matches, output, len(output), len(program), mult, dirn)
+        
+    if dirn == 1:
+        A += mult
+    else:
+        A -= mult
+
