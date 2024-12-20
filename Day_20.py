@@ -4,8 +4,6 @@ import kittehs_funkollection as kf
 
 inp = "input"
 grid = kf.file_as_grid(inp)
-start = next(kf.find_in_grid(grid, "S"))
-end = next(kf.find_in_grid(grid, "E"))
 distance = {}
 
 def is_valid(x, y):
@@ -44,6 +42,9 @@ def get_cheats(size):
 
 
 def solve():
+    start = next(kf.find_in_grid(grid, "S"))
+    end = next(kf.find_in_grid(grid, "E"))
+
     find_path(start, end)
     print(f"Part 1: {get_cheats(2)}")
     print(f"Part 2: {get_cheats(20)}")
