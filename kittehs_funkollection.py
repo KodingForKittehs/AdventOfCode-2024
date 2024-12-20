@@ -28,6 +28,9 @@ def file_as_grid(file, ctype=str):
     with open(file, encoding="utf-8") as f:
         return list(list(ctype(c) for c in line.strip()) for line in f.readlines())
 
+def create_grid(x, y, value):
+    return [[value for _ in range(y)] for _ in range(x)]
+
 def file_as_line(file):
     with open(file, encoding="utf-8") as f:
         return f.readline().strip()
