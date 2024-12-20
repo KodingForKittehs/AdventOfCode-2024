@@ -77,6 +77,16 @@ def find_in_grid(grid, value):
             if cell == value:
                 yield (i, j)
 
+def get_manhatten_locs(size):
+    if size == 0:
+        yield (0, 0)
+        return
+    for x in range(size):
+        yield (x, size - x)
+        yield (size - x, -x)
+        yield (-x, -size + x)
+        yield (-size + x, x)
+
 def floyd_warshall(adjacency_matrix, infinity=1e10, no_edge=0):
     dist = adjacency_matrix.copy()
     prev = np.full(adjacency_matrix.shape, None)
